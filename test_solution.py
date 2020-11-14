@@ -12,14 +12,14 @@ def test_basic():
 
     result = shortestRoute(input_str)
 
-    assert result[0] == 29.31950310838147
+    assert result[0] == 26.885521976324867
 
-    assert result[1] == [
-        Point(active=1, x=-5, y=7, z=0),
-        Point(active=1, x=-9, y=2, z=3),
+    assert result[1] ==  [
+        Point(active=1, x=0, y=8, z=2),
+        Point(active=1, x=-1, y=1, z=2),
         Point(active=1, x=-3, y=-5, z=5),
         Point(active=1, x=-6, y=-7, z=2),
-        Point(active=1, x=-5, y=-15, z=1)
+        Point(active=1, x=-5, y=-15, z=1),
     ]
 
 
@@ -34,14 +34,14 @@ def test_modified_espresso_group():
 
     result = shortestRoute(input_str)
 
-    assert result[0] == 28.65155953394884
+    assert result[0] == 26.52265809695876
 
     assert result[1] == [
         Point(active=1, x=-5, y=6, z=0),
-        Point(active=1, x=-9, y=2, z=3),
+        Point(active=1, x=-1, y=1, z=2),
         Point(active=1, x=-3, y=-5, z=5),
         Point(active=1, x=-6, y=-7, z=2),
-        Point(active=1, x=-5, y=-15, z=1)
+        Point(active=1, x=-5, y=-15, z=1),
     ]
 
 
@@ -56,14 +56,14 @@ def test_out_of_order():
 
     result = shortestRoute(input_str)
 
-    assert result[0] == 29.31950310838147
+    assert result[0] == 27.297768938007273
 
     assert result[1] == [
         Point(active=1, x=-5, y=7, z=0),
-        Point(active=1, x=-9, y=2, z=3),
+        Point(active=1, x=-1, y=1, z=2),
         Point(active=1, x=-3, y=-5, z=5),
         Point(active=1, x=-6, y=-7, z=2),
-        Point(active=1, x=-5, y=-15, z=1)
+        Point(active=1, x=-5, y=-15, z=1),
     ]
 
 
@@ -87,4 +87,3 @@ def test_single_path():
         Point(active=1, x=-6, y=-7, z=2),
         Point(active=1, x=-6, y=-16, z=8),
     ]
-
