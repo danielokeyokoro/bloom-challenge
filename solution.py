@@ -38,22 +38,29 @@ def pre_process(input_str):
     return [ process_input(group.split(";")) for group in groups ]
 
 
-def greedy(acc, point, groups, route):
+def greedy(acc, point, groups, route, lvl, memo):
     if not groups:
         return [acc, route]
 
-    smallest = min([ Point(*p) for p in groups[0] if p[0] ], key=partial(distance, point))
-    dist = distance(point, smallest)
-    return greedy(acc+dist, smallest, groups[1:], route+[smallest])
+    if (point, lvl) in memo:
+        smallest, dist = memo.get( (point, lvl) )
+    else:
+        smallest = min([ Point(*p) for p in groups[0] if p[0] ], key=partial(distance, point))
+        dist = distance(point, smallest)
+        memo[(point, lvl)] = (smallest, dist)
+
+    return greedy(acc+dist, smallest, groups[1:], route+[smallest], lvl+1, memo)
 
 
 def shortestRoute(input_str):
     groups = pre_process(input_str)
     result = [float("inf"), []]
 
+    memo = {}
+
     for p in groups[0]:
         if p[0]:
-            candidate = greedy(0, Point(*p), groups[1:], [ Point(*p) ])
+            candidate = greedy(0, Point(*p), groups[1:], [ Point(*p) ], 0, memo)
             if candidate[0] < result[0]:
                 result = candidate
 
